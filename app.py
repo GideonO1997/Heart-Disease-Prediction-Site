@@ -6,13 +6,11 @@ import pickle
 app = Flask(__name__)
 Bootstrap(app)
 app.secret_key = "theservantking_Kofo90love"
-# app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon.ico'))
 pickle_in = open("HeartDiseaseClassifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
 
-@app.route('/')
-@app.route('/')
+@app.route('/home')
 def index():
     return render_template("index.html")
 
@@ -86,4 +84,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
