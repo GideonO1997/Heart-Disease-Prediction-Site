@@ -1,7 +1,12 @@
 from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
+from Health import assessment
 
 import pickle
+import warnings
+
+# Getting rid of the unpickle warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -27,7 +32,7 @@ def predict():
 
     # If the route is called as a POST, then we continue
     if request.method == 'POST':
-        age = request.form['age']
+        age = int(request.form['age'])
 
         # Checking to see if the sex is a string or a number
         sex = request.form['sex']
@@ -43,11 +48,11 @@ def predict():
         chest_pain_type = int(request.form['chest_pain_type'])
 
         # Resting blood pressure comes in the way we expect it to
-        resting_bp_s = request.form['resting_bp_s']
+        resting_bp_s = int(request.form['resting_bp_s'])
 
         # Setting the fasting blood sugar level as a binary
-        fasting_blood_sugar = request.form['fasting_blood_sugar']
-        if int(fasting_blood_sugar) > 120:
+        fasting_blood_sugar = int(request.form['fasting_blood_sugar'])
+        if fasting_blood_sugar > 120:
             resting_bp_s = 1
         else:
             fasting_blood_sugar = 0
@@ -58,30 +63,35 @@ def predict():
         # Exercise Induced Angina comes in as a str so, we cast to an int
         exercise_angina = int(request.form['exercise_angina'])
 
-        oldpeak = request.form['oldpeak']
+        oldpeak = int(request.form['oldpeak'])
 
         # ST SLope comes in as a str so, we cast to an int
         ST_slope = int(request.form['ST_slope'])
 
-        prediction = classifier.predict([[age, sex, chest_pain_type, resting_bp_s, fasting_blood_sugar, resting_ecg,
-                                          exercise_angina, oldpeak, ST_slope]])
+        prediction = classifier.predict([[age, sex, chest_pain_type, resting_bp_s, fasting_blood_sugar,
+                                          resting_ecg, exercise_angina, oldpeak, ST_slope]])
 
         # Now we check the prediction variable to accurately classify things
         if prediction[0] == 0:
             has_prediction = True
-            prediction = "No Heart Disease Present"
+            final_prediction = "No Heart Disease Present"
         else:
             has_prediction = True
-            prediction = "Presence of Heart Disease Detected"
+            final_prediction = "Presence of Heart Disease Detected"
+
+        # Calculating How far each controllable variable is from getting Heart Disease
+        # And getting the assessment
+        # TODO: Call function to get response
+        response = assessment(age, chest_pain_type, resting_bp_s, resting_ecg, prediction)
 
     # If the prediction variable is empty, then we return teh error page
     # This is basically a double check to make sure the route gets called correctly
     if not has_prediction:
         return render_template("error.html")
     else:
-        flash(prediction)
+        flash(response)
         return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

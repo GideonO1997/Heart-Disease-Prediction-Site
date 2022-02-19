@@ -1,25 +1,25 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}Heart Disease Prediction{% endblock %}
-
-{% block styles %}
-{{super()}}
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link href="{{url_for('static', filename='css/results.css')}}" rel="stylesheet">
-<link href="{{url_for('static', filename='css/index-page.css')}}" rel="stylesheet">
-<link href="{{url_for('static', filename='css/top-navbar.css')}}" rel="stylesheet">
-<link href="{{url_for('static', filename='css/custom-container.css')}}" rel="stylesheet">
-{% endblock %}
-
-{% block body %}
-{{super()}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
 <body>
-<div>
-    <!-- Pop out (Input Section Description)-->
+<div class="container-xxl container-fluid" >
+
+    <!-- Information about the application/site -->
+    <h1 class="display-4">Welcome to Heart Disease Prediction</h1>
+    <p class="lead">
+        This is a simple web app that utilizes the database found on
+        <a href="https://ieee-dataport.org/open-access/heart-disease-dataset-comprehensive" target="_blank"><b>This data center.</b></a>
+        As a comprehensive dataset, it combines many of the already existing datasets to create a large pool of information.
+        This in turn enables data scientists such as myself to create useful models based on the dataset.
+    </p>
+    <hr class="my-4">
+    <p><b>To Learn more about the input sections and what to enter, please click the button below.</b></p>
+
+    <!-- Toggle a screen from the left-->
+    <button style="font-size: 18px;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Input Section</button>
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
         <!-- Header Information for the Variables -->
         <div class="offcanvas-header">
@@ -37,7 +37,7 @@
                     </h1>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <p style="font-size: 15px;">The Age section requires an integer representation of the age in years</p>
+                            <p>The Age section requires an integer representation of the age in years</p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     </h1>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <p style="font-size: 17px;">The Sex section requires information about the biological gender. Please do <b>NOT</b> specify identified gender</p>
+                            <p>The Sex section requires information about the biological gender. Please do <b>NOT</b> specify identified gender</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         </button>
                     </h1>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 17px;">
+                        <div class="accordion-body">
                             <p>Value 1: typical angina</p>
                             <p>Value 2: atypical angina</p>
                             <p>Value 3: non-anginal pain</p>
@@ -82,7 +82,7 @@
                     </h1>
                     <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <p style="font-size: 17px;">The Value needed is the Systolic Blood pressure level</p>
+                            <p>The Value needed is the Systolic Blood pressure level</p>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                         </button>
                     </h1>
                     <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 17px;">
+                        <div class="accordion-body">
                             <p>Value 0: normal</p>
                             <p>Value 1: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</p>
                             <p>Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria</p>
@@ -112,7 +112,7 @@
                     </h1>
                     <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <p style="font-size: 17px;">Oldpeak =ST, please provide information using depression units</p>
+                            <p>Oldpeak =ST, please provide information using depression units</p>
                         </div>
                     </div>
                 </div>
@@ -125,64 +125,226 @@
                         </button>
                     </h1>
                     <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 17px;">
+                        <div class="accordion-body">
                             <p>Value 0: upsloping</p>
                             <p>Value 1: flat</p>
                             <p>Value 2: downsloping</p>
                         </div>
                     </div>
                 </div>
+
+
             </div>
+            <br>
+            <br>
+            <a class="btn btn-primary btn-lg" href="https://ieee-dataport.s3.amazonaws.com/docs/18722/documentation.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJOHYI4KJCE6Q7MIQ%2F20220208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220208T094317Z&X-Amz-SignedHeaders=Host&X-Amz-Expires=86400&X-Amz-Signature=89d40b084d5e23b524477af198314ab9574d645fae8122d35ac70f56984f41de" role="button" target="_blank">
+                Find out more about the variables (PDF Download)
+            </a>
       </div>
     </div>
-    <!-- Pop out end -->
+    <br>
+    <br>
+    <hr>
 
-    <div class="custom-contain">
-        <div class="title">
-            Heart Disease Prediction
-        </div>
+    <!-- Contains form post data and results -->
+    <div class="align-items-center">
 
-        <!-- Form Content Information and Response from API -->
+
+        <!-- Contains the Information needed for getting the prediction results -->
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <h2>{{message['Result']}}</h2>
-                    <p>
-                        Based on the factors you entered these are the likelihood
-                        percentages of suffering Heart Disease based on specific
-                        mutable factors.
-                    </p>
-                    <h4>Blood Pressure: {{message['Systolic']}}%</h4>
-                    <h4>Electrocardiogram Result: {{message['ECG']}}%</h4>
-                    <h4>Chest Pain Level: {{message['Chest']}}%</h4>
-                {% endfor %}
-            {% else %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="container-fluid ">
                 <form action="predict" method="post">
-                    <div class="info-button">
-                        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
-                            <i class="fa fa-question-circle" aria-hidden="true"></i>
-                        </button>
+                    <fieldset style="font-size: 12px;">
+                    <!-- Field Number 1 -->
+                    <label>What is your age?</label>
+                    <input type="number" name="age" min="0" required autofocus>
+                    <br>
+                    <br>
+
+                    <!-- Field Number 2 -->
+                    <label>What is your biological sex?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="male" required>
+                        <label class="form-check-label" for="validationFormCheck1">Male</label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="validationFormCheck2" value="female" required>
+                        <label class="form-check-label" for="validationFormCheck2">Female</label>
+                        <div class="invalid-feedback">Please Select a Biological Gender.</div>
+                    </div>
+                    <br>
+
+                    <!-- Field Number 3 -->
+                    <label>What is your chest pain level?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
+                        <label class="form-check-label" for="validationFormCheck1">1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck4" value="2" required>
+                        <label class="form-check-label" for="validationFormCheck2">2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormChec5" value="3" required>
+                        <label class="form-check-label" for="validationFormCheck1">3</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck6" value="4" required>
+                        <label class="form-check-label" for="validationFormCheck2">4</label>
+                        <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
+                    </div>
+                    <br>
+
+                    <!-- Field Number 4 -->
+                    <label>What is your resting blood pressure (in mm/Hg?</label>
+                    <input type="number" name="resting_bp_s" min="0" required autofocus>
+                    <br>
+                    <br>
+
+                    <!-- Field Number 5 -->
+                    <label>What is your fasting blood sugar (in mg/dl)?</label>
+                    <input type="number" name="fasting_blood_sugar" min="0" required autofocus>
+                    <br>
+                    <br>
+
+                    <!-- Field Number 6 -->
+                    <label>What is your resting electrocardiogram results?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck7" value="0" required>
+                        <label class="form-check-label" for="validationFormCheck2">0</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck8" value="1" required>
+                        <label class="form-check-label" for="validationFormCheck1">1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck9" value="2" required>
+                        <label class="form-check-label" for="validationFormCheck2">2</label>
+                        <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
+                    </div>
+                    <br>
+
+                    <!-- Field Number 7 -->
+                    <label>Do you suffer from exercise induced angina?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck10" value="1" required>
+                        <label class="form-check-label" for="validationFormCheck1">yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck11" value="2" required>
+                        <label class="form-check-label" for="validationFormCheck2">no</label>
+                        <div class="invalid-feedback">Please Select an option.</div>
+                    </div>
+                    <br>
+
+                    <!-- Field Number 8 -->
+                    <label>What is your oldpeak level?</label>
+                    <input type="number" name="oldpeak" min="0" required autofocus>
+                    <br>
+                    <br>
+
+                    <!-- Field Number 9 -->
+                    <label>What is the slope of your peak exercise ST segment?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck12" value="1" required>
+                        <label class="form-check-label" for="validationFormCheck2">1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck13" value="2" required>
+                        <label class="form-check-label" for="validationFormCheck1">2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck14" value="3" required>
+                        <label class="form-check-label" for="validationFormCheck2">3</label>
+                        <div class="invalid-feedback">Please Select an option.</div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <!-- The Submit Button -->
+                    <input type="submit" value="PREDICT" class="btn btn-danger" style="font-size: 20px; border-radius: 10px; padding: 10px 10px;">
+                    <br>
+                    <br>
+                </fieldset>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+
+
+
+
+
+
+
+
+        {% endif %}
+        {% endwith %}
+
+
+    </div>
+
+</div>
+</body>
+</html>
+
+
+{% block navbar %}
+<div class="topnav" id="myTopnav">
+    <div class="container-fluid">
+        <a class="img-heart">
+            <img src="{{url_for('static', filename='assets/Heart-noBG.svg')}}" width="30" height="30" class="img-fluid" alt="Heart_Png">
+        </a>
+        <a class="active" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+            Input Section Description
+        </a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+
+<p>
+            Heart disease is caused by atherosclerosis,
+            which is the buildup of fatty deposits,
+            or plaques, in the walls of the coronary
+            arteries over many years. From Age to Blood pressure,
+            there are many variables that are studied that help
+            in the early detection of Heart Disease. Below is
+            a tool that does just that. Using, we can build models
+            that help detect disease that would otherwise go unnoticed.
+            The Heart Detection model below is just an implementation
+            of many tool that could be created. With enough information,
+            models can be built to save lives. Above you will find
+            a input description field that explains what to enter.
+        </p>
+
+<!--Completed Form With Responsive Nature-->
+                <form action="predict" method="post">
                     <div class="patient-details">
-                        <!-- Field Number 1 [age] -->
+                        <!-- Field Number 1 -->
                         <div class="input-box">
                             <span class="details">Age</span>
                             <input type="number" name="age" min="0" placeholder="What is your age?" required >
                         </div>
 
-                        <!-- Field Number 4 [BP] -->
+                        <!-- Field Number 4 -->
                         <div class="input-box">
                             <span class="details">Blood Pressure</span>
                             <input type="number" name="resting_bp_s" min="0" placeholder="What is your resting blood pressure?" required>
                         </div>
 
-                        <!-- Field Number 5 [Blood Sugar] -->
+                        <!-- Field Number 5 -->
                         <div class="input-box">
                             <span class="details">Blood Sugar</span>
                             <input type="number" name="fasting_blood_sugar" min="0" placeholder="What is your fasting blood sugar?" required>
                         </div>
 
-                        <!-- Field Number 8 [Oldpeak] -->
+                        <!-- Field Number 8 -->
                         <div class="input-box">
                             <span class="details">Oldpeak</span>
                             <input type="number" name="oldpeak" min="0" placeholder="What is your oldpeak level?" required>
@@ -206,7 +368,7 @@
 
                     <!-- Field Number 3 -->
                     <div class="pain-details">
-                        <span class="gender-title">Chest Pain level</span>
+                        <span class="gender-title">Pain level</span>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
                             <label class="form-check-label" for="validationFormCheck1">1</label>
@@ -281,24 +443,3 @@
                         <input type="submit" value="PREDICT" >
                     </div>
                 </form>
-            {% endif %}
-        {% endwith %}
-    </div>
-</div>
-</body>
-{% endblock %}
-
-{% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-</script>
-{{super()}}
-{% endblock %}

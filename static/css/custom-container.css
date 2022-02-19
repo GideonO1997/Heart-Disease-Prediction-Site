@@ -1,0 +1,115 @@
+.custom-contain{
+    max-width: 700rem;
+    width: min(90%, 90rem);
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.custom-contain .title{
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.custom-contain form .patient-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1rem 0 0.75rem 0;
+}
+
+form .info-button button {
+    color: red;
+    font-size: 3rem;
+}
+
+form .info-button {
+    padding-left: 36.5rem;
+    color: transparent;
+    margin: 0;
+}
+form .patient-details .input-box{
+    margin-bottom: 1rem;
+    width: calc(100% / 2 - 1.25rem);
+}
+
+.patient-details .input-box .details{
+    display: block;
+    font-size: 120%;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.patient-details .input-box input{
+    height: 3rem;
+    width: 100%;
+    outline: none;
+    border-radius: 0.40rem;
+    border: 1px solid #ccc;
+    padding-left: 1px;
+    font-size: 1rem;
+    border-bottom-width: 2px;
+    transition: all 0.5s ease;
+}
+
+/*.patient-details .input-box input::placeholder{*/
+/*    padding-left: .5rem;*/
+/*}*/
+
+/*.patient-details .input-box input::marker{*/
+/*    padding-left: .5rem;*/
+/*}*/
+
+.patient-details .input-box input:focus,
+.patient-details .input-box input:valid{
+    border-color: dodgerblue;
+}
+
+/*Radio Button Section*/
+form .gender-details, .pain-details, .ecg-details, .angina-details, .st-details .gender-title{
+    font-weight: 500;
+    font-size: 120%;
+}
+
+form .button{
+    height: 3rem;
+    margin: 3rem 0;
+}
+
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    border-radius: 0.40rem;
+    color: #fff;
+    background: linear-gradient(135deg, dodgerblue, #DA1212);
+}
+
+form .button input:hover{
+    background: linear-gradient(-135deg, dodgerblue, #DA1212);
+    transition: all 1.5s ease;
+
+}
+
+/*#Responsive nature SMALL SCREEN*/
+@media (max-width: 80rem) {
+    .custom-contain{
+        max-width: 45rem;
+        transition: all 0.5s ease;
+    }
+
+    form .patient-details .input-box {
+        margin-bottom: 1rem;
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+
+    form .info-button {
+        padding-left: 28rem;
+    }
+}

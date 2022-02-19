@@ -1,0 +1,17 @@
+.result-container{
+    max-width: 800rem;
+    width: 88rem;
+    padding: 1rem;
+}
+
+
+
+
+/*#Responsive nature SMALL SCREEN*/
+@media (max-width: 80rem) {
+    .result-container{
+        max-width: 43rem;
+        transition: all 0.5s ease;
+    }
+
+}
