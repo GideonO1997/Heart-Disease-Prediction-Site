@@ -1,10 +1,11 @@
 .custom-contain{
     max-width: 700rem;
+    height: max-content;
     width: min(90%, 90rem);
     background: #fff;
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
 .custom-contain .title{
@@ -53,13 +54,6 @@ form .patient-details .input-box{
     transition: all 0.5s ease;
 }
 
-/*.patient-details .input-box input::placeholder{*/
-/*    padding-left: .5rem;*/
-/*}*/
-
-/*.patient-details .input-box input::marker{*/
-/*    padding-left: .5rem;*/
-/*}*/
 
 .patient-details .input-box input:focus,
 .patient-details .input-box input:valid{
@@ -67,7 +61,7 @@ form .patient-details .input-box{
 }
 
 /*Radio Button Section*/
-form .gender-details, .pain-details, .ecg-details, .angina-details, .st-details .gender-title{
+form .gender-details, .pain-details, .ecg-details, .angina-details, .st-details, .gender-title{
     font-weight: 500;
     font-size: 120%;
 }
@@ -99,8 +93,9 @@ form .button input:hover{
 /*#Responsive nature SMALL SCREEN*/
 @media (max-width: 80rem) {
     .custom-contain{
-        max-width: 45rem;
+        width: auto;
         transition: all 0.5s ease;
+
     }
 
     form .patient-details .input-box {
@@ -110,6 +105,20 @@ form .button input:hover{
     }
 
     form .info-button {
-        padding-left: 28rem;
+        padding-left: 0rem;
+        transition: all 0.5s ease;
+
     }
+
+    
+}
+
+@media (max-height: 53.5rem){
+
+    .custom-contain {
+        max-height: 65rem;
+        overflow-y: scroll;
+        transition: all 0.5 ease;
+    }
+    
 }

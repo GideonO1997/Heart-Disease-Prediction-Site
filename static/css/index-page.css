@@ -13,10 +13,3 @@ body{
   justify-content: center;
   background: linear-gradient(180deg, dodgerblue, #DA1212);
 }
-
-@media (max-width: 80rem) {
-  body{
-    display: flex;
-    padding-left: 3.5rem;
-  }
-}
