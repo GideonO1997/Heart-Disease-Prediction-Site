@@ -141,10 +141,10 @@ form .button input:hover{
 
 
 
-@media (max-height: 55rem){
+@media (max-height: 57rem){
 
     .custom-contain {
-        max-height: 60rem;
+        max-height: 65rem;
         overflow-y: scroll;
         transition: all 0.5s ease;
     }
