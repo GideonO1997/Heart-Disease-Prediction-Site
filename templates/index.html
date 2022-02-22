@@ -15,6 +15,9 @@
 <link href="{{url_for('static', filename='css/custom-container.css')}}" rel="stylesheet">
 {% endblock %}
 
+
+
+
 {% block body %}
 {{super()}}
 <body>
@@ -137,32 +140,88 @@
     </div>
     <!-- Pop out end -->
 
-    <div class="custom-contain">
-        <div class="title">
-            Heart Disease Prediction
-        </div>
-
         <!-- Form Content Information and Response from API -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    <h2>{{message['Result']}}</h2>
-                    <p>
-                        Based on the factors you entered these are the likelihood
-                        percentages of suffering Heart Disease based on specific
-                        mutable factors.
-                    </p>
-                    <h4>Blood Pressure: {{message['Systolic']}}%</h4>
-                    <h4>Electrocardiogram Result: {{message['ECG']}}%</h4>
-                    <h4>Chest Pain Level: {{message['Chest']}}%</h4>
+                    <div class="prediction">
+                        <div class="result-text">
+                            <div class="heart-disease-result">
+                                {{message['Result']}}
+                            </div>
+                        </div>
+
+                        <div class="result-value">
+                            <div class="total-risk">
+                                <h2>
+                                    According to the data,
+                                    you are {{message['Total']}}% at risk
+                                    for Heart Disease.
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="result-info">
+                            <div class="heart-disease-text">
+                                Based on the factors you entered these are the likelihood
+                                percentages of suffering Heart Disease based on specific
+                                mutable factors. However, Heart Disease is preventable.
+                                To reduce the risk of Heart Disease,
+                                <a href="https://www.cdc.gov/heartdisease/prevention.htm">click me!</a> To learn more
+                            </div>
+                        </div>
+
+                        <div class="row result-grid">
+
+                            <div class="col-md-4 results">
+                                <div class="card bp">
+                                    <h3>Blood Pressure: {{message['Systolic']}}%</h3>
+                                    <p>
+                                        According to the <a href="https://www.cdc.gov/bloodpressure/about.htm">CDC</a>,
+                                        Systolic heart rate that is 120bpm or Higher is at risk for
+                                        Heart Disease. To Improve Heart Health
+                                        <a href="https://www.ucihealth.org/blog/2017/02/how-to-strengthen-heart">Click Me!</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 results">
+                                <div class="card ecg">
+                                    <h3>Electrocardiogram: {{message['ECG']}}%</h3>
+                                    <p>
+                                        Based onn our data set, {{message['ECG']}}% of individuals who had the
+                                        same result had heart disease.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 results">
+                                <div class="card cp">
+                                    <h3>Chest Pain Level Risk: {{message['Chest']}}%</h3>
+                                    <p>
+                                        Based onn our data set, {{message['Chest']}}% of individuals who had the
+                                        same result had heart disease.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 {% endfor %}
             {% else %}
-                <form action="predict" method="post">
-                    <div class="info-button">
-                        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
-                            <i class="fa fa-question-circle" aria-hidden="true"></i>
-                        </button>
+                <div class="custom-contain">
+                    <form action="predict" method="post">
+                    <div class="row">
+                        <div class="title">
+                            Heart Disease Prediction
+                        </div>
+                         <div class="info-button">
+                            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <div class="patient-details">
                         <!-- Field Number 1 [age] -->
                         <div class="input-box">
@@ -190,100 +249,104 @@
 
                     </div>
 
-                    <!-- Field Number 2 -->
-                    <div class="gender-details">
-                        <span class="gender-title">Biological Sex</span>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="male" required>
-                            <label class="form-check-label" for="validationFormCheck1">Male</label>
+                    <div class="radios">
+                        <!-- Field Number 2 -->
+                        <div class="gender-details">
+                            <span class="gender-title">Biological Sex</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="male" required>
+                                <label class="form-check-label" for="validationFormCheck1">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sex" id="validationFormCheck2" value="female" required>
+                                <label class="form-check-label" for="validationFormCheck2">Female</label>
+                                <div class="invalid-feedback">Please Select a Biological Gender.</div>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sex" id="validationFormCheck2" value="female" required>
-                            <label class="form-check-label" for="validationFormCheck2">Female</label>
-                            <div class="invalid-feedback">Please Select a Biological Gender.</div>
+
+                        <!-- Field Number 3 -->
+                        <div class="pain-details">
+                            <span class="gender-title">Chest Pain level</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
+                                <label class="form-check-label" for="validationFormCheck1">1</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck4" value="2" required>
+                                <label class="form-check-label" for="validationFormCheck2">2</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormChec5" value="3" required>
+                                <label class="form-check-label" for="validationFormCheck1">3</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck6" value="4" required>
+                                <label class="form-check-label" for="validationFormCheck2">4</label>
+                                <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
+                            </div>
+                        </div>
+
+                        <!-- Field Number 6 -->
+                        <div class="ecg-details">
+                            <span class="gender-title">ECG Result</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck7" value="0" required>
+                                <label class="form-check-label" for="validationFormCheck2">0</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck8" value="1" required>
+                                <label class="form-check-label" for="validationFormCheck1">1</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck9" value="2" required>
+                                <label class="form-check-label" for="validationFormCheck2">2</label>
+                                <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
+                            </div>
+                        </div>
+
+                        <!-- Field Number 7 -->
+                        <div class="angina-details">
+                            <span class="gender-title">Exercised Induced Angina</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck10" value="1" required>
+                                <label class="form-check-label" for="validationFormCheck1">yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck11" value="2" required>
+                                <label class="form-check-label" for="validationFormCheck2">no</label>
+                                <div class="invalid-feedback">Please Select an option.</div>
+                            </div>
+                        </div>
+
+                        <!-- Field Number 9 -->
+                        <div class="st-details">
+                            <span class="gender-title">ST Segment</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck12" value="1" required>
+                                <label class="form-check-label" for="validationFormCheck2">1</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck13" value="2" required>
+                                <label class="form-check-label" for="validationFormCheck1">2</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck14" value="3" required>
+                                <label class="form-check-label" for="validationFormCheck2">3</label>
+                                <div class="invalid-feedback">Please Select an option.</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Field Number 3 -->
-                    <div class="pain-details">
-                        <span class="gender-title">Chest Pain level</span>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
-                            <label class="form-check-label" for="validationFormCheck1">1</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck4" value="2" required>
-                            <label class="form-check-label" for="validationFormCheck2">2</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormChec5" value="3" required>
-                            <label class="form-check-label" for="validationFormCheck1">3</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck6" value="4" required>
-                            <label class="form-check-label" for="validationFormCheck2">4</label>
-                            <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
-                        </div>
-                    </div>
-
-                    <!-- Field Number 6 -->
-                    <div class="ecg-details">
-                        <span class="gender-title">ECG Result</span>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck7" value="0" required>
-                            <label class="form-check-label" for="validationFormCheck2">0</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck8" value="1" required>
-                            <label class="form-check-label" for="validationFormCheck1">1</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="resting_ecg" id="validationFormCheck9" value="2" required>
-                            <label class="form-check-label" for="validationFormCheck2">2</label>
-                            <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
-                        </div>
-                    </div>
-
-                    <!-- Field Number 7 -->
-                    <div class="angina-details">
-                        <span class="gender-title">Exercised Induced Angina</span>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck10" value="1" required>
-                            <label class="form-check-label" for="validationFormCheck1">yes</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck11" value="2" required>
-                            <label class="form-check-label" for="validationFormCheck2">no</label>
-                            <div class="invalid-feedback">Please Select an option.</div>
-                        </div>
-                    </div>
-
-                    <!-- Field Number 9 -->
-                    <div class="st-details">
-                        <span class="gender-title">ST Segment</span>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck12" value="1" required>
-                            <label class="form-check-label" for="validationFormCheck2">1</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck13" value="2" required>
-                            <label class="form-check-label" for="validationFormCheck1">2</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck14" value="3" required>
-                            <label class="form-check-label" for="validationFormCheck2">3</label>
-                            <div class="invalid-feedback">Please Select an option.</div>
-                        </div>
-                    </div>
 
                     <!-- Button -->
                     <div class="button">
                         <input type="submit" value="PREDICT" >
                     </div>
                 </form>
+                </div>
             {% endif %}
         {% endwith %}
-    </div>
+
 </div>
 </body>
 {% endblock %}

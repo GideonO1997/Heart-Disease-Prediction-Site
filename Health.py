@@ -35,22 +35,25 @@ def assessment(age, ch_tp, res_bp, res_ecg, prediction):
     else:
         ch_tp_percentage = __has_four_cp
 
+    total_risk = round(((age_percentage_data + res_bp_percentage_online + res_ecg_percentage_data + ch_tp_percentage) / 4))
     # Setting the Result Variable
     if prediction == 0:
         result = {
-            'Result': "No Heart Disease Present",
+            'Result': "No Presence of Heart Disease Detected",
             'Age': age_percentage_data,
             'Systolic': res_bp_percentage_online,
             'ECG': res_ecg_percentage_data,
-            'Chest': ch_tp_percentage
+            'Chest': ch_tp_percentage,
+            'Total': total_risk
         }
     else:
         result = {
-            'Result': "Heart Disease Present",
+            'Result': "Presence of Heart Disease Detected",
             'Age': age_percentage_data,
             'Systolic': res_bp_percentage_online,
             'ECG': res_ecg_percentage_data,
-            'Chest': ch_tp_percentage
+            'Chest': ch_tp_percentage,
+            'Total': total_risk
         }
 
     return result

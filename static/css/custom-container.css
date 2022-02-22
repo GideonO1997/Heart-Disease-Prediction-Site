@@ -8,9 +8,36 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
-.custom-contain .title{
+form .row{
+    align-items: center;
+    max-width: 100%;
+    /*background: green;*/
+
+}
+
+form .row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+form .row .title{
+    /*background: red;*/
     font-size: 2rem;
     font-weight: 500;
+    width: 60%;
+    float: left;
+}
+
+form .row .info-button {
+    color: transparent;
+    margin-left: 10rem;
+    /*background: blue;*/
+    width: 14%;
+}
+
+form .row .info-button button {
+    color: red;
+    font-size: 3rem;
 }
 
 .custom-contain form .patient-details{
@@ -20,16 +47,6 @@
     margin: 1rem 0 0.75rem 0;
 }
 
-form .info-button button {
-    color: red;
-    font-size: 3rem;
-}
-
-form .info-button {
-    padding-left: 36.5rem;
-    color: transparent;
-    margin: 0;
-}
 form .patient-details .input-box{
     margin-bottom: 1rem;
     width: calc(100% / 2 - 1.25rem);
@@ -61,7 +78,18 @@ form .patient-details .input-box{
 }
 
 /*Radio Button Section*/
-form .gender-details, .pain-details, .ecg-details, .angina-details, .st-details, .gender-title{
+form .radios{
+    /*background: red;*/
+    display: grid;
+    gap: 1rem;
+
+}
+form .radios .gender-details,
+.pain-details,
+.ecg-details,
+.angina-details,
+.st-details,
+.gender-title{
     font-weight: 500;
     font-size: 120%;
 }
@@ -104,21 +132,29 @@ form .button input:hover{
         transition: all 0.5s ease;
     }
 
-    form .info-button {
-        padding-left: 0rem;
+    form .row .info-button {
+        margin-left: 26%;
         transition: all 0.5s ease;
-
     }
-
     
 }
 
-@media (max-height: 53.5rem){
+
+
+@media (max-height: 55rem){
 
     .custom-contain {
-        max-height: 65rem;
+        max-height: 60rem;
         overflow-y: scroll;
-        transition: all 0.5 ease;
+        transition: all 0.5s ease;
     }
-    
+
+    form .radios {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        transition: all 0.5s ease;
+    }
+
 }
+
