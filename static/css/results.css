@@ -13,6 +13,10 @@
     padding-bottom: 0.5rem;
 }
 
+.prediction .result-info .heart-disease-text{
+    font-size: 1.5rem;
+}
+
 .result-grid .results{
     padding: 1.5rem;
 }
@@ -36,7 +40,7 @@
 
     .prediction .result-value {
         max-width: max-content;
-        margin-left: 22rem;
+        margin-left: 7rem;
         padding: 0.5rem;
     }
 }

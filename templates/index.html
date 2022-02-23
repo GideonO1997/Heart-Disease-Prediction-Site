@@ -129,9 +129,9 @@
                     </h1>
                     <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body" style="font-size: 17px;">
-                            <p>Value 0: upsloping</p>
-                            <p>Value 1: flat</p>
-                            <p>Value 2: downsloping</p>
+                            <p>Value 1: upsloping</p>
+                            <p>Value 2: flat</p>
+                            <p>Value 3: downsloping</p>
                         </div>
                     </div>
                 </div>
@@ -147,17 +147,31 @@
                     <div class="prediction">
                         <div class="result-text">
                             <div class="heart-disease-result">
-                                {{message['Result']}}
+                                {% if message['Result'] == 0 %}
+                                    No Presence of Heart Disease Detected
+                                {% else %}
+                                    Presence of Heart Disease Detected
+                                {% endif %}
                             </div>
                         </div>
 
                         <div class="result-value">
                             <div class="total-risk">
-                                <h2>
-                                    According to the data,
-                                    you are {{message['Total']}}% at risk
-                                    for Heart Disease.
-                                </h2>
+                                {% if message['Result'] == 0 %}
+                                    <h2>
+                                        According to the data, you have no Heart Disease;
+                                        However, there is still a {{message['Total']}}%
+                                        risk for Heart Disease. Please review the
+                                        information below to help reduce the risk.
+                                    </h2>
+                                {% else %}
+                                    <h2>
+                                        According to the data, there appears to be
+                                        Heart Disease detected. Please consult you primary
+                                        care physical for more detailed information on the
+                                        next steps to take.
+                                    </h2>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -252,7 +266,7 @@
                     <div class="radios">
                         <!-- Field Number 2 -->
                         <div class="gender-details">
-                            <span class="gender-title">Biological Sex</span>
+                            <span class="gender-title">Sex</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="male" required>
                                 <label class="form-check-label" for="validationFormCheck1">Male</label>
@@ -266,7 +280,7 @@
 
                         <!-- Field Number 3 -->
                         <div class="pain-details">
-                            <span class="gender-title">Chest Pain level</span>
+                            <span class="gender-title">Chest Pain</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
                                 <label class="form-check-label" for="validationFormCheck1">1</label>
@@ -306,7 +320,7 @@
 
                         <!-- Field Number 7 -->
                         <div class="angina-details">
-                            <span class="gender-title">Exercised Induced Angina</span>
+                            <span class="gender-title">Angina</span>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="exercise_angina" id="validationFormCheck10" value="1" required>
                                 <label class="form-check-label" for="validationFormCheck1">yes</label>

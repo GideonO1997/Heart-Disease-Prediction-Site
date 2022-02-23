@@ -39,7 +39,7 @@ def assessment(age, ch_tp, res_bp, res_ecg, prediction):
     # Setting the Result Variable
     if prediction == 0:
         result = {
-            'Result': "No Presence of Heart Disease Detected",
+            'Result': 0,
             'Age': age_percentage_data,
             'Systolic': res_bp_percentage_online,
             'ECG': res_ecg_percentage_data,
@@ -48,7 +48,7 @@ def assessment(age, ch_tp, res_bp, res_ecg, prediction):
         }
     else:
         result = {
-            'Result': "Presence of Heart Disease Detected",
+            'Result': 1,
             'Age': age_percentage_data,
             'Systolic': res_bp_percentage_online,
             'ECG': res_ecg_percentage_data,
