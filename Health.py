@@ -25,7 +25,7 @@ def assessment(age, ch_tp, prediction):
     else:
         ch_tp_percentage = __has_four_cp
 
-    total_risk = round(( (age_percentage_data + ch_tp_percentage) / 2 ))
+    total_risk = round(((age_percentage_data + ch_tp_percentage) / 2))
     # Setting the Result Variable
     if prediction == 0:
         result = {
