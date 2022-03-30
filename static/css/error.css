@@ -23,7 +23,7 @@ body {
 .far {
   position: absolute;
   font-size: 8.5rem;
-  left: 42%;
+  left: 40%;
   top: 15%;
   color: #ffffff;
 }
@@ -54,4 +54,9 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.msg > p{
+    font-size: 4rem;
+    text-align: center;
 }

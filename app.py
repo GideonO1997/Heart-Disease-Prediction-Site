@@ -1,16 +1,17 @@
-from flask import Flask, request, render_template, flash, redirect, url_for
+from flask import Flask, request, abort, render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from Health import assessment
 
+import json
+import re
 import pickle
 import warnings
-
-# Getting rid of the unpickle warnings
-warnings.filterwarnings("ignore", category=UserWarning)
 
 app = Flask(__name__)
 Bootstrap(app)
 app.secret_key = "theservantking_Kofo90love"
+# Getting rid of the unpickle warnings
+warnings.filterwarnings("ignore", category=UserWarning);
 pickle_in = open("HeartDiseaseClassifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
@@ -26,9 +27,9 @@ def predict():
     has_prediction = False
 
     # Checking to see if the route is getting called as a GET
-    # I don't want this, so we return an error page with a redirect link
+    # I don't want this, so we just redirect back to home
     if request.method == 'GET':
-        return render_template("error.html")
+        return redirect(url_for("index"))
 
     # If the route is called as a POST, then we continue
     if request.method == 'POST':
@@ -47,19 +48,6 @@ def predict():
         # Chest pain comes in as a str so, we cast to an int
         chest_pain_type = int(request.form['chest_pain_type'])
 
-        # Resting blood pressure comes in the way we expect it to
-        resting_bp_s = int(request.form['resting_bp_s'])
-
-        # Setting the fasting blood sugar level as a binary
-        fasting_blood_sugar = int(request.form['fasting_blood_sugar'])
-        if fasting_blood_sugar > 120:
-            resting_bp_s = 1
-        else:
-            fasting_blood_sugar = 0
-
-        # Resting ECG comes in as a str so, we cast to an int
-        resting_ecg = int(request.form['resting_ecg'])
-
         # Exercise Induced Angina comes in as a str so, we cast to an int
         exercise_angina = int(request.form['exercise_angina'])
 
@@ -68,29 +56,28 @@ def predict():
         # ST SLope comes in as a str so, we cast to an int
         ST_slope = int(request.form['ST_slope'])
 
-        prediction = classifier.predict([[age, sex, chest_pain_type, resting_bp_s, fasting_blood_sugar,
-                                          resting_ecg, exercise_angina, oldpeak, ST_slope]])
-
-        # Now we check the prediction variable to accurately classify things
-        if prediction[0] == 0:
-            has_prediction = True
-            final_prediction = "No Heart Disease Present"
-        else:
-            has_prediction = True
-            final_prediction = "Presence of Heart Disease Detected"
-
+    # Adding a try except to catch any and all problems before returning
+    try:
+        model_prediction = classifier.predict([[age, sex, chest_pain_type, exercise_angina, oldpeak, ST_slope]])
         # Calculating How far each controllable variable is from getting Heart Disease
         # And getting the assessment
-        # TODO: Call function to get response
-        response = assessment(age, chest_pain_type, resting_bp_s, resting_ecg, prediction)
-
-    # If the prediction variable is empty, then we return teh error page
-    # This is basically a double check to make sure the route gets called correctly
-    if not has_prediction:
+        response = assessment(age, chest_pain_type, model_prediction)
+        return redirect(url_for("result", param_pred=response))
+    except:
+        # If the prediction variable is empty, then we return teh error page
+        # This is basically a double check to make sure the route gets called correctly
+        flash("Something went wrong, please try again.")
         return render_template("error.html")
-    else:
-        flash(response)
-        return redirect(url_for('index'))
+
+
+@app.route('/prediction')
+@app.route('/prediction/<param_pred>')
+def result(param_pred=None):
+    if param_pred is not None:
+        p = re.compile('(?<!\\\\)\'')
+        param_pred = p.sub('\"', param_pred)
+
+    return render_template('prediction.html', prediction=json.loads(param_pred))
 
 
 if __name__ == "__main__":

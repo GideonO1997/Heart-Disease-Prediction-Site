@@ -1,0 +1,41 @@
+{% extends "nav.html" %}
+
+{% block body %}
+{{super()}}
+
+{% if prediction or prediction == None %}
+
+
+
+<div class="min-h-screen w-full bg-gray-300">
+
+    <div class="card" style="background: transparent; border: none; width:400px; height: 50px">
+
+    </div>
+
+    <div class="max-w-screen-md mx-auto px-10 pt-20">
+        <div class="bg-white md:h-48 rounded-lg shadow-md flex flex-wrap flex-col-reverse md:flex-col">
+            <div class=" p-4">
+                <img src="{{url_for('static', filename='assets/Ecg-line.svg')}}" alt="Heart" class="w-8">
+                <h3 class="text-3xl font-bold">Results</h3>
+                {% if prediction["Result"] == 0 %}
+                    <p>Presence of Heart Disease <b>Not Detected</b>.</p>
+                    <p>However there is a <b>{{prediction['Total']}}%</b> risk.</p>
+                    <p>To reduce the risk of Heart Disease, or to learn more, please
+                        <a style="font-weight: bolder; color: cornflowerblue" href="https://www.cdc.gov/heartdisease/prevention.htm">Here!</a>
+                    </p>
+                {% elif prediction != None and prediction["Result"] == 1 %}
+                    <p>Presence of Heart Disease <b>Detected</b>.</p>
+                    <p>To get more information what steps to take please contact your primary care physician.</p>
+                {% else %}
+                    <p>Results inconclusive, please try again by click the Heart Icon.</p>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

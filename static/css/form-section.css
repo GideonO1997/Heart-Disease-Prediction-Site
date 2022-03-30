@@ -1,0 +1,71 @@
+.form-section{
+    padding: 0 1em;
+    max-width: 30rem;
+    margin: 10% auto 0;
+    transition: 0.5s ease-in-out;
+}
+
+.multi-form{
+    /*margin-top: 50%;*/
+    overflow: auto;
+}
+
+.form-card{
+    /*border: 1px solid #333;*/
+    border-radius: .5rem;
+    padding: .5rem;
+    max-width: 90%;
+    margin: 0 auto;
+    display: none;
+
+}
+
+.form-card > button{
+    border-radius: .5rem;
+    margin-top: .7rem;
+    font-size: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    gap: .25rem;
+}
+
+.form-group:last-child{
+    margin: 0;
+}
+
+.form-group > label {
+    font-weight: bold;
+    font-size: .9em;
+    color: #333333;
+}
+
+.form-group > input{
+    border: 1px solid #333;
+    border-radius: .25em;
+    font-size: 1rem;
+    padding: .25em;
+}
+
+.step-title{
+    margin: 0 0 1rem;
+    text-align: center;
+}
+
+
+/* When a form card is active */
+
+.form-card.active{
+    display: block;
+}
+
+/* Responsive layout */
+@media (min-width: 40em) {
+    .form-section{
+        margin-top: 20%;
+        transition: 0.5s ease-in-out;
+    }
+}
