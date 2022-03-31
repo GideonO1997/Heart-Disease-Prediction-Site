@@ -6,7 +6,7 @@
 {% if prediction or prediction == None %}
 
 
-<div class="min-h-screen w-full bg-gray-300">
+<div class="min-h-screen w-full">
 
     <div class="card" style="background: transparent; border: none; width:400px; height: 50px">
 
@@ -19,12 +19,12 @@
                 <h3 class="text-3xl font-bold">Results</h3>
                 {% if prediction["Result"] == 0 %}
                     <p>Presence of Heart Disease <b>Not Detected</b>.</p>
-                    <p>However there is a <b>{{prediction['Total']}}%</b> risk.</p>
+                    <p>However, based on your inputs, there is a <b>{{prediction['Total']}}%</b> risk.</p>
                     <p>To reduce the risk of Heart Disease, or to learn more, please
                         <a style="font-weight: bolder; color: cornflowerblue" href="https://www.cdc.gov/heartdisease/prevention.htm">Here!</a>
                     </p>
                 {% elif prediction != None and prediction["Result"] == 1 %}
-                    <p>Presence of Heart Disease <b>Detected</b>.</p>
+                    <p>Based on your inputs, the presence of Heart Disease has been <b>Detected</b>.</p>
                     <p>To get more information what steps to take please contact your primary care physician.</p>
                 {% else %}
                     <p>Results inconclusive, please try again by click the Heart Icon.</p>
