@@ -15,6 +15,7 @@ warnings.filterwarnings("ignore", category=UserWarning);
 pickle_in = open("HeartDiseaseClassifier.pkl", "rb")
 classifier = pickle.load(pickle_in)
 
+
 @app.route('/')
 @app.route('/home')
 def index():
