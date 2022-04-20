@@ -1,5 +1,3 @@
-import math
-
 # AGE
 __max_age_data = 54
 __max_age_online = 65

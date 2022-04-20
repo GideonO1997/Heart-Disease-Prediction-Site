@@ -47,21 +47,69 @@
                 <div class="accordion-item">
                     <h1 class="accordion-header" id="flush-headingThree">
                         <button style="font-size: 17px;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            Chest Pain Information
+                            Chest Pain Type
                         </button>
                     </h1>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 
                         <div class="accordion-body" >
-                            <p style="font-size: 17px;" >
+                            <p style="font-size: 15px;" >
                                 Angina feels like squeezing, pressure, heaviness, tightness, or pain in the chest.
-                                It can be sudden or recur over time.
-                                Depending on severity, it can be treated by lifestyle changes, medication, angioplasty, or surgery.
+                                It can be sudden or recur over time. Depending on severity, it can be treated by lifestyle changes,
+                                medication, angioplasty, or surgery. Usually, angina is a symptom that may feel like a tightness
+                                or heaviness in the central chest. It may be associated with shortness of breath and perspiration.
+                                The location of the discomfort will vary from person to person. Some people may have it in the central
+                                part of the chest, some may have it on the left side, some may have it on the right side, and some may
+                                have it radiating across the chest. It may also feel like the discomfort moves or radiates to the shoulder,
+                                arms, jaw, neck, and back. It usually does not radiate past the wrist into the hand.
                             </p>
-                            <p style="font-size: 14px;" >Value 1: typical angina</p>
-                            <p style="font-size: 14px;" >Value 2: atypical angina</p>
-                            <p style="font-size: 14px;" >Value 3: non-anginal pain</p>
-                            <p style="font-size: 14px;" >Value 4: asymptomatic</p>
+
+                            <br>
+                            <div class="chest-1">
+                                <h1 style="font-weight: bold">Typical Angina</h1>
+                                <br>
+                                <p style="font-size: 13px;" >
+                                    Typical (classic) angina chest pain consists of Substernal chest pain or discomfort that is
+                                    Provoked by exertion or emotional stress and relieved by rest or nitroglycerine (or both).
+                                </p>
+                            </div>
+
+                            <br>
+                            <hr style="background: linear-gradient(25deg, dodgerblue, red)">
+                            <br>
+                            <div class="chest-2">
+                                <h1 style="font-weight: bold">Atypical Angina</h1>
+                                <br>
+                                <p style="font-size: 13px;" >
+                                    Atypical angina is a pain that is unrelated to typical anginal pain.
+                                    If the chest pain can't be considered angina, then the pain is said to be
+                                    atypical, which unlike typical chest pain, this pain doesn't occur in the sternum and may radiate to other parts of the body.
+                                </p>
+                            </div>
+
+                            <br>
+                            <hr style="background: linear-gradient(25deg, dodgerblue, red)">
+                            <br>
+                            <div class="chest-3">
+                                <h1 style="font-weight: bold">Non-anginal Pain</h1>
+                                <br>
+                                <p style="font-size: 14px;" >
+                                    Non-cardiac (or non-anginal) chest pain is the term that is used to describe pain in the chest that is not caused by heart disease or a heart attack.
+                                    In most people, non-cardiac chest pain is related to a problem with the esophagus, such as gastro-esophageal reflux disease.
+                                    Other causes include muscle or bone problems, lung conditions or diseases, stomach problems, stress, anxiety, and depression.
+                                </p>
+                            </div>
+
+                            <br>
+                            <hr style="background: linear-gradient(25deg, dodgerblue, red)">
+                            <br>
+                            <div class="chest-4">
+                                <h1 style="font-weight: bold">Asymptomatic</h1>
+                                <br>
+                                <p style="font-size: 14px;" >
+                                    Silent (asymptomatic) myocardial ischemia (SMI) is defined as a transient alteration in myocardial perfusion in the absence of chest pain or the usual anginal equivalents.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,14 +118,15 @@
                 <div class="accordion-item">
                     <h1 class="accordion-header" id="flush-headingFour">
                         <button style="font-size: 17px;" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                            Angina (Exersice Induced Angina)
+                            Exersice Induced Angina
                         </button>
                     </h1>
                     <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <p style="font-size: 17px;">
                                 As a simple yes or no question. We would like to know whether ot not you suffer from
-                                angina while exercising.
+                                angina while exercising. Angina feels like squeezing, pressure, heaviness, tightness,
+                                or pain in the chest. It can be sudden or recur over time.
                             </p>
                         </div>
                     </div>
@@ -92,7 +141,14 @@
                     </h1>
                     <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <p style="font-size: 17px;">Oldpeak =ST, please provide information using depression units</p>
+                            <p style="font-size: 17px;">
+                                The information needed is simply the magnitude of the ST segment deviation
+                                measured as the height difference (in millimeters) between the J point
+                                and the PR segment. This is normally found by taking an ECG scan.
+                            </p>
+                        </div>
+                        <div class="nav-graphic">
+                            <img src="{{url_for('static', filename='assets/Oldpeak.png')}}" alt="ECG">
                         </div>
                     </div>
                 </div>
@@ -106,9 +162,17 @@
                     </h1>
                     <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body" style="font-size: 17px;">
-                            <p>Value 1: upsloping</p>
-                            <p>Value 2: flat</p>
-                            <p>Value 3: downsloping</p>
+                            When an ECG is taken, there are difference in the PQRST formation. The information needed here
+                            is related to the ST portion of the PQRST. The image below provides description of the
+                            necessary types.
+                            <p> </p>
+                            <p style="font-size: 13px;">Type 1: upsloping</p>
+                            <p style="font-size: 13px;">Type 2: downsloping</p>
+                            <p style="font-size: 13px;">Type 3: flat (or horizontal)</p>
+                        </div>
+                        <br>
+                        <div class="nav-graphic">
+                            <img src="{{url_for('static', filename='assets/ST.png')}}" alt="ECG">
                         </div>
                     </div>
                 </div>
@@ -118,7 +182,7 @@
 <!-- Pop out end -->
 <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
-      <a href="{{ url_for('index') }}" class="img-heart a-glow">
+      <a href="{{ url_for('home') }}" class="img-heart a-glow">
             <img src="{{url_for('static', filename='assets/Heart-noBG.svg')}}" width="30" height="30" class="img-fluid" alt="Heart_Png">
       </a>
       <a class="navbar-brand">Disease Prediction</a>

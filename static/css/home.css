@@ -1,0 +1,10 @@
+.home-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-main {
+    border: 5px solid red;
+    text-align: center;
+}

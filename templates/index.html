@@ -1,34 +1,44 @@
 {% extends "nav.html" %}
 
+{% block styles %}
+{{super()}}
+<link href="{{url_for('static', filename='css/form-section.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 {{super()}}
 <body>
 
 <div class="container-fluid form-section">
     <!-- Form for API request -->
-    <form data-multi-step class="multi-form" action="/predict" method="POST">
+    <form data-multi-step class="multi-form" action="{{ url_for('predict') }}" method="POST" />
+       
+
         <!-- Field Number 1 [Age] -->
         <div class="form-card active" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/age.png')}}" alt="Flowers in Chania">
+            </div>
             <div class="form-group">
                 <label>Age</label>
-                <input type="number" name="age" min="0" required>
-            </div>
-            <div class="graphic">
-
+                <input type="number" name="age" min="0" max="120" required>
             </div>
             <button class="btn btn-danger me-md-2" type="button" data-next >Next</button>
         </div>
 
         <!-- Field Number 2 [Sex] -->
         <div class="form-card" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/sex.png')}}" alt="Flowers in Chania">
+            </div>
             <div class="form-group">
                 <label>Sex</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="male" required>
+                    <input class="form-check-input" type="radio" name="sex" id="validationFormCheck1" value="1" required>
                     <label class="form-check-label" for="validationFormCheck1">Male</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sex" id="validationFormCheck2" value="female" required>
+                    <input class="form-check-input" type="radio" name="sex" id="validationFormCheck2" value="0" required>
                     <label class="form-check-label" for="validationFormCheck2">Female</label>
                     <div class="invalid-feedback">Please Select a Biological Gender.</div>
                 </div>
@@ -39,23 +49,26 @@
 
         <!-- Field Number 3 [Chest Pain Type] -->
         <div class="form-card" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/CHP.png')}}" alt="Flowers in Chania">
+            </div>
             <div class="form-group">
                 <label>Chest Pain Type</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck3" value="1" required>
-                    <label class="form-check-label" for="validationFormCheck3">1</label>
+                    <label class="form-check-label" for="validationFormCheck3">Typical Angina</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck4" value="2" required>
-                    <label class="form-check-label" for="validationFormCheck4">2</label>
+                    <label class="form-check-label" for="validationFormCheck4">Atypical Angina</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck5" value="3" required>
-                    <label class="form-check-label" for="validationFormCheck5">3</label>
+                    <label class="form-check-label" for="validationFormCheck5">Non-Anginal Pain</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="chest_pain_type" id="validationFormCheck6" value="4" required>
-                    <label class="form-check-label" for="validationFormCheck6">4</label>
+                    <label class="form-check-label" for="validationFormCheck6">Asymptomatic</label>
                     <div class="invalid-feedback">Please Select a Chest Pain Level.</div>
                 </div>
             </div>
@@ -65,6 +78,9 @@
 
         <!-- Field Number 4 [Exercise Angina] -->
         <div class="form-card" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/Pain.png')}}" alt="Flowers in Chania">
+            </div>
             <div class="form-group">
                 <label>Do you suffer from exercise induced angina?</label>
                 <div class="form-check">
@@ -83,6 +99,9 @@
 
         <!-- Field Number 5 [oldpeak] -->
         <div class="form-card" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/ECG.png')}}" alt="ECG">
+            </div>
             <div class="form-group">
                 <label>What is your oldpeak level?</label>
                 <input type="number" name="oldpeak" min="0" max="6" required>
@@ -93,19 +112,22 @@
 
         <!-- Field Number 6 [ST slope] -->
         <div class="form-card" data-step>
+            <div class="graphic">
+                <img src="{{url_for('static', filename='assets/ECG.png')}}" alt="ECG">
+            </div>
             <div class="form-group">
                 <label>What is the slope of your peak exercise ST segment?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck9" value="1" required>
-                    <label class="form-check-label" for="validationFormCheck9">1</label>
+                    <label class="form-check-label" for="validationFormCheck9">Upsloping</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck10" value="2" required>
-                    <label class="form-check-label" for="validationFormCheck10">2</label>
+                    <label class="form-check-label" for="validationFormCheck10">Flat or (Horizontal)</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="ST_slope" id="validationFormCheck11" value="3" required>
-                    <label class="form-check-label" for="validationFormCheck11">3</label>
+                    <label class="form-check-label" for="validationFormCheck11">Downsloping</label>
                     <div class="invalid-feedback">Please Select an option.</div>
                 </div>
             </div>

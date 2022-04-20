@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{super()}}
+<link href="{{url_for('static', filename='css/home.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<body class="home-body">
+    <div class="home-main">
+        <h1 class="mb-1"><em>Welcome To Heart Disease Prediction</em></h1>
+        <h3 class="mb-5">This site uses a public database to help you determine the likelihood, and presence of Heart Disease based on the answers give to the following questions. To Begin, click the button below.</h3>
+        <a class="btn btn-primary btn-xl" href="{{ url_for('home') }}">Let's Get Started</a>
+    </div>
+</body>
+
+{% endblock %}
